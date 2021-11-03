@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".DetailFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:fitsSystemWindows="true"
+        android:layout_height="200dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:expandedTitleMarginBottom="20dp"
+            app:expandedTitleMarginStart="15dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_marginTop="?attr/actionBarSize"
+                android:orientation="vertical"
+                android:fitsSystemWindows="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    tools:text="Bulbsaro"
+                    android:textSize="25sp"
+                    android:id="@+id/txt_pokemon_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+
+                    />
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    tools:src="@tools:sample/avatars"
+                    android:id="@+id/pokemon_img"
+                    android:scaleType="centerCrop"
+                    />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                app:contentInsetStart="0dp"
+                app:contentInsetStartWithNavigation="0dp"
+                app:layout_collapseMode="pin"
+                android:theme="@style/Theme.ToolbarMenu"
+                app:navigationIcon="?attr/homeAsUpIndicator"
+                />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_pokemon_information"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:visibility="gone"
+            android:visibility="gone"
+            android:padding="20dp">
+
+
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/txt_pokemon_height"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="Height: 6"
+                app:layout_constraintEnd_toStartOf="@+id/txt_pokemon_weight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/txt_pokemon_weight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="Weight: 6"
+                app:layout_constraintEnd_toStartOf="@+id/txt_pokemon_experience"
+                app:layout_constraintStart_toEndOf="@id/txt_pokemon_height"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/txt_pokemon_experience"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                tools:text="Base experience: 64"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/txt_pokemon_weight"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_pokemon_weight"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                tools:src="@tools:sample/avatars"
+                android:id="@+id/pokemon_img_front"
+                app:layout_constraintEnd_toStartOf="@id/pokemon_img_back"
+                android:scaleType="centerCrop"
+                />
+
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@id/pokemon_img_front"
+                android:id="@+id/pokemon_img_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_pokemon_weight"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                tools:src="@tools:sample/avatars"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_section_forms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="240dp" />
+
+
+            <TextView
+                android:id="@+id/txt_forms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forms"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline_section_forms" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/forms_recycler_adapter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_forms" />
+
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/txt_moves"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Moves"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/forms_recycler_adapter" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/move_recycler_adapter"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/txt_moves"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                            />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/circular_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_gravity="center"
+
+        />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
